@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<title>Mini Class - Teacher Login</title>
+</head>
+<body>
+	<h1>Welcome Mini Class Teacher</h1>
+
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+	<form ng-app="" name="myForm">
+
+		<p>Demo Username:  teacher1@hotmail.com</p>
+		<p>Demo Password: password</p>
+
+		<p ng-bind="response"></p>
+
+
+		Email: <input type="email" name="email" ng-model="email">		<br>
+		<span ng-show="myForm.email.$error.email">
+            Not a valid e-mail address</span>
+       <br/>
+		Password: <input type="password" ng-model="password">
+        <br><br>
+		<button ng-click="postData()">Submit</button>
+	</form>
+
+</div>
+
+<script>
+	var app = angular.module('myApp', []);
+	app.controller('myCtrl', function($scope, $http, $window) {
+
+		$scope.email = "";
+		$scope.password = "";
+
+		$scope.postData = function(){
+
+			console.log("in here");
+
+			var params = { email : $scope.email, password :  $scope.password };
+
+			$http.post('api/login.php', params)
+			.then(function (res) {
+	             
+	             if(res.data.status == "SUCCESS") {
+	             	$window.location = "dashboard.php";
+	             } else {
+	             	$scope.response = res.data.message;
+	             }
+	             
+	         }
+			, function (res) {
+				$scope.response = "There was an error.";
+	            console.log("Error:", res.data); //there was an error
+	        });
+		}
+
+
+	});
+</script>
+
+
+</body>
+</html>

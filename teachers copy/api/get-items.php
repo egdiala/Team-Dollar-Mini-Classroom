@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 if(!isset($_SESSION["id"])){
 	exit("No session in progress");
@@ -20,7 +21,7 @@ if(isset($_GET["tid"])){
   $tid = $_GET["tid"];
 }
 
-require "db/db.php";
+require "../db/db.php";
 
 $cid = ($cid ? mysqli_real_escape_string($conn, $cid) : "");
 $iid = ($iid ? mysqli_real_escape_string($conn, $iid) : "");
@@ -49,21 +50,28 @@ if($cid || $iid || $tid){
 $sql = "SELECT * FROM `items` $where";
 
 $result = $conn->query($sql);
-$items = array();
 
 if($result === FALSE){
   echo $conn->error;
 } else if ($result->num_rows > 0) {
+  $outputarray = array();
 
   while($row = $result->fetch_assoc()) {
-      $items[] = $row;
+      $outputarray[] = json_encode($row);
   }
 
+  $feedback = "[" . implode(",", $outputarray) . "]";
+
 } else {
-    //Nothing to show
+    $feedback = "[]";
 }
+echo $feedback;
 
 
 $conn->close();
-
+/*
+[
+    {“iid” : 1, “name”:”Item 1”, "description": "the description", "classId":1, "teacherId": 1, "date_added": "1 January 2019" } ...
+]
+*/
 ?>

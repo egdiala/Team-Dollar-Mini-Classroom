@@ -2,51 +2,59 @@
 session_start();
 
 if(!isset($_SESSION["id"])){
-	exit("No session in progress");
+	header("location:index.html");
 }
 
-$json = file_get_contents('php://input');
-$data = json_decode($json);
-
-function giveFeedback( $status , $message ){
-    $arr = array();
-    $arr["status"] = $status;
-    $arr["message"] = $message;
-    echo json_encode($arr);  
+function giveFeedback($status, $message ){
+    if($status){
+      header("location:../class-view.php?cid=".$message);
+    } else {
+      header("location:../create-class-view.php?m=".$message); 
+    } 
 }
 
-if(!json_last_error() == JSON_ERROR_NONE){
-    giveFeedback( "FAILURE" , "Bad json sent." );
-    exit();
-}
+$message = "";
+$status = 0;
 
-if(!$data->tid || !$data->name){
-	giveFeedback( "FAILURE" , "You need to provide teacher Id(tid) and name." );
-	exit;
-}
+if(isset($_POST["name"])){
 
-require "../db/db.php";
+    /*
+    if(!$data->tid || !$data->name){
+    	giveFeedback( "You need to provide teacher Id(tid) and name." );
+    	exit;
+    }
+    */
 
-$tid = $data->tid;
-$name = $data->name;
-$desc = $data->description;
+    require "../db/db.php";
 
-$tid = ($tid ? mysqli_real_escape_string($conn, $tid) : "");
-$name = ($name ? mysqli_real_escape_string($conn, $name) : "");
-$desc = ($desc ? mysqli_real_escape_string($conn, $desc) : "");
+    $tid = $_SESSION["id"];
+    $name = $_POST["name"];
+    $desc = $_POST["description"];
 
-$sql = "INSERT INTO `classes` SET
-  `name` = '" . $name . "',
-  `teacherId` = " . $tid . ",
-  `description` = '" . $desc . "', 
-  `date_added` = NOW()";
+    $tid = ($tid ? mysqli_real_escape_string($conn, $tid) : "");
+    $name = ($name ? mysqli_real_escape_string($conn, $name) : "");
+    $desc = ($desc ? mysqli_real_escape_string($conn, $desc) : "");
 
-if ($conn->query($sql) === TRUE) {
-    giveFeedback( "SUCCESS" , "Class created successfully" );
+    $sql = "INSERT INTO `classes` SET
+      `name` = '" . $name . "',
+      `teacherId` = " . $tid . ",
+      `description` = '" . $desc . "', 
+      `date_added` = NOW()";
+
+    if ($conn->query($sql) === TRUE) {
+        $status=1;
+        $message = $conn->insert_id;
+    } else {
+        $message = $conn->error ;
+    }
+
+    $conn->close();
+
+
 } else {
-    giveFeedback( "FAILURE" , $conn->error );
+    $message = "You have to give the class a name.";
 }
 
-$conn->close();
-
+giveFeedback($status,  $message );
+exit();
 ?>

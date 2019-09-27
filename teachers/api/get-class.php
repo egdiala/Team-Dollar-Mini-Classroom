@@ -5,23 +5,28 @@ if(!isset($_SESSION["id"])){
 	exit("No session in progress");
 }
 */
+if(!isset($_GET["cid"])){
+  location("header:dashboard.php");
+}
 
 require "db/db.php";
 
 $tid = $_SESSION["id"];
-
 $tid = ($tid ? mysqli_real_escape_string($conn, $tid) : "");
+
+$cid = $_GET["cid"];
+$cid = ($cid ? mysqli_real_escape_string($conn, $cid) : "");
 
 $where = ""; //optional sql where statement
 
 if($tid){
-  $where = " WHERE `teacherId` = $tid";
+  $where = " WHERE  `cid`=$cid and `teacherId` = $tid ";
 }
 
 $sql = "SELECT * FROM `classes` $where";
 
 $result = $conn->query($sql);
-$feedback = array();
+
 
 if($result === FALSE){
   echo $conn->error;
@@ -29,11 +34,11 @@ if($result === FALSE){
 
 
   while($row = $result->fetch_assoc()) {
-      $feedback[] = $row;
+      $class = $row;
   }
 
 } else {
-    //$feedback = "[]";
+    $class = array();
 }
 
 $conn->close();
