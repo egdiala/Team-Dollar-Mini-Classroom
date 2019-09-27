@@ -11,46 +11,38 @@ require "logincheck.php";
 <body>
 	<h2>Welcome Mini Class Teacher</h2>
 
+	<?php
+		require "api/get-classes.php"
+	?>
 
-<div ng-app="myApp" ng-controller="myCtrl">
-	<h1>Hi <span ng-bind="name"></span></h1>
+	<div>
+		<h1>Hi <span ng-bind="name"></span></h1>
 
-	<table>
-	  <tr>
-	  	<td>S/N</td>
-	  	<td>Class Id</td>
-	  	<td>Class Name</td>
-	  	<td>Action</td>
-	  </tr>
-	  <tr ng-repeat="c in classes">
-	    <td>{{ $index + 1 }}</td>
-	    <td>{{ c.cid }}</td>
-	    <td>{{ c.name }}</td>
-	    <td>View</td>
-	  </tr>
-	</table>
+		<table border="1">
+		  <tr>
+		  	<td>S/N</td>
+		  	<td>Class Id</td>
+		  	<td>Class Name</td>
+		  	<td>Action</td>
+		  </tr>
 
-</div>
+		<?php
+			for($i = 0; $i < count($feedback); $i++) {
+				$row = $feedback[$i];
+		?>
+			  <tr>
+			    <td><?php echo ($i+1); ?></td>
+			    <td><?php echo $row["cid"]; ?></td>
+			    <td><?php echo $row["name"] ?></td>
+			    <td><a href="class-view.php?cid=<?php echo $row["cid"]; ?>">View</a></td>
+			  </tr>
+		<?php
+			}
+		?>
+		</table>
 
-<script>
-	var app = angular.module('myApp', []);
-	app.controller('myCtrl', function($scope, $http, $window) {
-
-		$scope.uid = <?php echo $_SESSION["id"] ?>;
-		$scope.name = "<?php echo $_SESSION["name"] ?>";
-		$scope.email = "<?php echo $_SESSION["email"] ?>";
-
-		$http.get('api/get-classes.php').then(function (res) {
-	             $scope.classes = res.data;
-	             
-	         }, function (res) {
-				$scope.response = "There was an error.";
-	            console.log("Error:", res.data); //there was an error
-	    });
-
-
-	});
-</script>
+		<h2><a href="create-class-view.php">Create Class</a></h2>
+	</div>
 
 
 </body>
