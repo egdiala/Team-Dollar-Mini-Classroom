@@ -1,0 +1,251 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    
+
+}
+.main-container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin:0;
+    height: 100%;
+}
+
+.heading-text{
+    margin-top: 2.5rem;
+    text-align: center;
+    font-family: 'Italiana', serif;
+
+}
+.heading-text > p{
+    font-size: 20px;
+    color: grey;
+    
+}
+.rightside{
+    background: linear-gradient(#0D25B9, #FD6585);
+}
+.bottom{
+    margin-top: 25px;
+    text-align: center;
+}
+.bottom >p {
+    margin-top: 5px;
+    margin-bottom: 8px;
+    color: white;
+    font-family: 'Pragati Narrow', sans-serif;
+}
+.bottom-txt{
+    margin-top: 1rem;
+    
+}
+.btm-left-txt{
+    float: left;
+    margin-left: 15px;
+    color: white; 
+}
+.btm-right-txt{
+    float: right;
+    margin-right: 15px;
+    color: white;
+}
+
+/*Form*/
+form{
+   
+    margin-top: 6rem;
+}
+.form-container{
+     margin-left: 6rem;
+    margin-right: 6rem;
+}
+input{
+    width: 100%;
+    height: 1.8rem;
+    padding: 0.7rem;
+    margin-top: 0.5rem;
+    border-radius: 0 5px 5px 0;
+    border: none;
+    font-family: 'Pragati Narrow', sans-serif;
+}
+input::-webkit-input-placeholder {
+    direction: ltr;
+    font-family: 'Pragati Narrow', sans-serif;
+
+   
+}
+.input1, .input2, .input3, .input4{
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+}
+.icon1, .icon2, .icon3, .icon4{
+    top:10rem;
+
+}
+
+
+
+
+
+/* Images */
+.left-image{
+    width: 100%;
+    height: 100vh;
+}
+.logo{
+    margin: 0 auto;
+}
+.logo > img{
+    display: block;
+    width: 14rem;
+    height: 15rem;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 2rem;
+}
+
+/*Utility*/
+button{
+    padding: 0.8rem;
+    border-radius: 13px;
+    width: 9rem;
+    background-color: #C95790;
+    border: none;
+    box-shadow:  0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    color: white;
+    font-family: 'Pragati Narrow', sans-serif;
+}
+.txt-lg{
+    font-size: 1.7rem;
+}
+.txt-md{
+    font-size: 15px;
+}
+
+
+/*Icons*/
+#f-user {
+   z-index: 1;
+  color: black;
+  float: right;
+  background: white;
+  width: 1.5rem;
+  height: 1.8rem;
+  text-align: center;
+  padding: 0.7rem;
+  margin-top: 0.5rem;
+  border-radius: 5px 0 0 5px; 
+}
+#l-user {
+ z-index: 1;
+  color: black;
+  float: right;
+  background: white;
+  width: 1.5rem;
+  height: 1.8rem;
+  text-align: center;
+  padding: 0.7rem;
+  margin-top: 0.5rem;
+  border-radius: 5px 0 0 5px; 
+}
+#envelope {
+
+  z-index: 1;
+  color: black;
+  float: right;
+  background: white;
+  width: 1.5rem;
+  height: 1.8rem;
+  text-align: center;
+  padding: 0.7rem;
+  margin-top: 0.5rem;
+  border-radius: 5px 0 0 5px; 
+}
+#lock {
+   z-index: 1;
+  color: black;
+  float: right;
+  background: white;
+  width: 1.5rem;
+  height: 1.8rem;
+  text-align: center;
+  padding: 0.7rem;
+  margin-top: 0.5rem;
+  border-radius: 5px 0 0 5px; 
+}
+
+
+
+@media only screen and (max-width: 600px){
+  /*Left side*/
+  .heading-text > p{
+    font-size: 15px;
+}
+.left-image{
+    width: 100%;
+    height: 60%;
+}
+ .txt-lg{
+    font-size: 1.3rem;
+} 
+/*Right Side*/
+.logo > img{
+    display: block;
+    width: 8rem;
+    height: 9rem;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 2rem;
+}  
+input{
+    height: 1.8rem;
+    padding: 0.1rem;
+    margin-top: 0.5rem;
+    border-radius: 0 5px 5px 0;
+    border: none;   
+}
+.form-container{
+     margin-left: 2.5rem;
+    margin-right: 2.5rem;
+}
+/*Icons*/
+
+#envelope{
+    padding: 0.1rem;
+    text-align: center;
+}
+#lock{
+    margin-top: 0.5rem;
+    padding: 0.1rem;
+    float: right;
+}
+#f-user{
+    margin-top: 0.5rem;
+    padding: 0.1rem;
+    float: right;
+}
+#l-user{
+    margin-top: 0.5rem;
+    padding: 0.1rem;
+    float: right;
+}
+/*bottom*/
+.btm-left-txt{
+    margin-left: 5px;
+    font-size: 12px;
+}
+.btm-right-txt{
+    margin-right: 5px;
+    font-size: 12px;
+}
+button{
+    padding: 0.5rem;
+    border-radius: 13px;
+    width: 7rem;
+    background-color: #C95790;
+    border: none;
+    box-shadow:  0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    color: white;
+}
+}
