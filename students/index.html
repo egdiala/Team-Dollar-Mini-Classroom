@@ -1,18 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Students Login</title>
+    <!-- Required meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/login.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-    <link href="https://fonts.googleapis.com/css?family=Italiana&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Pragati+Narrow&display=swap" rel="stylesheet">
-    <title>Students Login Page</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="../assets/css/styles.css">   
+    <!-- <link rel="stylesheet" href="../assets/css/login.css">  -->
+    <!-- FontAwesome 4 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Abel|Abril+Fatface|Acme|Amatic+SC|Anton|Archivo+Narrow|Arimo|Arvo|Asap|Assistant|Barlow|Bitter|Bree+Serif|Cabin|Cairo|Catamaran|Cinzel|Coda|Coda+Caption:800|Comfortaa|Crete+Round|Crimson+Text|Dancing+Script|Domine|Dosis|EB+Garamond|Encode+Sans+Condensed|Exo|Exo+2|Fahkwang|Fira+Sans|Fira+Sans+Condensed|Fjalla+One|Francois+One|Gloria+Hallelujah|Heebo|Hind|Hind+Madurai|Hind+Siliguri|Inconsolata|Indie+Flower|Jacques+Francois|Josefin+Sans|Kanit|Karla|Kdam+Thmor|Lato|Libre+Baskerville|Libre+Franklin|Lobster|Lora|Major+Mono+Display|Maven+Pro|Merriweather|Merriweather+Sans|Montserrat|Mukta|Muli|Nanum+Gothic|Noto+Sans|Noto+Sans+JP|Noto+Sans+KR|Noto+Sans+TC|Noto+Serif|Noto+Serif+SC|Nunito|Nunito+Sans|Open+Sans|Open+Sans+Condensed:300|Oswald|Oxygen|PT+Sans|PT+Sans+Caption|PT+Sans+Narrow|PT+Serif|Pacifico|Play|Playfair+Display|Poppins|Questrial|Quicksand|Rajdhani:Bold|Raleway|Righteous|Roboto|Roboto+Condensed|Roboto+Mono|Roboto+Slab|Rubik|Saira+Extra+Condensed|Sarabun|Shadows+Into+Light|Signika|Slabo+27px|Source+Code+Pro|Source+Sans+Pro|Source+Serif+Pro|Staatliches|Teko|Titillium+Web|Ubuntu|Ubuntu+Condensed|Varela+Round|Vollkorn|Work+Sans|Yanone+Kaffeesatz|ZCOOL+KuaiLe" rel="stylesheet">
+	
 </head>
 <body>
-    
-    <div class="main-container">
+<section>
+    <div>
+        <div class="d-flex">
+            <div class="col-12 col-md-6">
+                <div class="text-center">
+                    <div class="container p-4">
+                        <h1 class="p-2">Student Login</h1>
+                        <p class="text">make sure your account is secure</p>
+                    </div>
+                    <img src="../assets/images/exams.png" style="width: 100%;">
+                </div>
+            </div>
+            <div class="col-12 col-md-6 w-50 bg-color">
+                <div class="text-center">
+                    <div class="container p-4">
+                        <div class="card-img-top">
+                            <img src="../assets/images/logo.png" style="width: 40%">
+                        </div>
+                        <form action="" class="p-4">
+                            <div class="form-group form-row justify-content-center align-items-center">
+                                <div class="input-group pb-3 col-8">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">
+                                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                    <input type="Email" name="mail" id="email" class="form-control form-control-lg" 
+                                    placeholder="Enter Email" aria-label="Username" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="input-group pb-3 col-8">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">
+                                            <i class="fa fa-lock" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                    <input type="Password" name="pass" id="password" class="form-control form-control-lg" 
+                                    placeholder="Enter Password" aria-label="Password" aria-describedby="basic-addon1">
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn-lg btn-primary" type="submit">
+                                <span class="">Sign In</span>
+                            </button>
+                            <div class="d-flex pt-3">
+                                <div class="col">
+                                    <p class="col-auto text"><span><a>Forgot Password?</a></span></p>
+                                </div>
+                                <div class="col">
+                                    <p class="col-auto text"><span><a href="student-register.html">Yet to register?</a></span></p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- <div class="main-container">
         <div class="leftside">
             <div class="heading-text">
             <h1 class="txt-lg">STUDENT LOGIN</h1>
@@ -59,6 +129,6 @@
             </div>
            
         </div>
-    </div>
+    </div> -->
 </body>
 </html>

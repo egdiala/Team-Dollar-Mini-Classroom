@@ -1,0 +1,74 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+    box-sizing: border-box;
+}
+html,
+body {
+  padding: 0 !important;
+  margin: 0 !important;
+  font-family: 'Roboto', "Open Sans", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+  color: black;
+  -ms-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bg-color {
+    background-image: linear-gradient(#0D25B9, #FD6585); 
+}
+h1 {
+    font-family: 'Open sans', sans-serif !important;
+    color: #172b4d;
+    font-size: 2rem !important;
+    font-weight: bold;
+}
+p {
+    font-family: 'Open sans', sans-serif !important;
+    color: #fff;
+    font-size: 1rem !important;
+}
+input {
+    height: 1.8rem;
+    padding: 0.7rem;
+    font-size: 16px;
+}
+input::-webkit-input-placeholder {
+    direction: ltr;
+    font-family: 'Roboto', sans-serif;
+}
+.logo {
+    width: 7rem;
+}
+:placeholder-shown {
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px !important;
+}
+.text {
+    font-family: 'Roboto', sans-serif;
+}
+input.form-control:focus {
+    border: none !important;
+}
+.btn {
+    background-color: #FD6585 !important;
+    border: none;
+}
+button{
+    padding: 0.8rem;
+    border-radius: 13px;
+    width: 9rem;
+    box-shadow:  0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+.fa4 {
+    color: #172b4d;
+    font-size: 14px !important;
+}
+.portlet {
+    position: absolute;
+    top: 60px;
+    left: 210px;
+}
