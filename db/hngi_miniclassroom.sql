@@ -3,12 +3,18 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Sep 26, 2019 at 12:01 PM
+-- Generation Time: Oct 02, 2019 at 08:39 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `hngi_miniclassroom`
@@ -36,7 +42,13 @@ CREATE TABLE `classes` (
 INSERT INTO `classes` (`cid`, `name`, `teacherId`, `description`, `students`, `date_added`) VALUES
 (1, 'First Class', 1, 'This is the first class to be created.', NULL, '2019-09-26 09:36:54'),
 (2, 'Second Class', 1, 'This is the second class to be created.', NULL, '2019-09-26 09:39:30'),
-(3, 'Third Class', 1, 'This is the third class to be created.', NULL, '2019-09-26 10:13:01');
+(3, 'Third Class', 1, 'This is the third class to be created.', NULL, '2019-09-26 10:13:01'),
+(4, 'First Real Class', 1, 'This class was created via the form', NULL, '2019-09-27 15:58:15'),
+(5, 'First Real Class', 1, 'This class was created via the form', NULL, '2019-09-27 15:58:33'),
+(6, 'Second Real Class', 1, 'Class created via form', NULL, '2019-09-27 16:04:16'),
+(7, 'Sunday Class', 1, 'This will be a class for people that can make it to lectures during the week.                                                    \r\n                                                ', NULL, '2019-09-29 11:20:14'),
+(8, 'Latest Class', 1, 'Class for the newest things in town.                                                    \r\n                                                ', NULL, '2019-09-29 13:26:16'),
+(9, 'Sunday 2 Class', 1, 'A class to be held on Sundays                                                    \r\n                                                ', NULL, '2019-09-29 13:39:58');
 
 -- --------------------------------------------------------
 
@@ -59,7 +71,10 @@ CREATE TABLE `items` (
 
 INSERT INTO `items` (`iid`, `name`, `description`, `classId`, `teacherId`, `date_added`) VALUES
 (1, 'First Item', 'This is the first class to be created.', 1, 1, '2019-09-26 10:14:35'),
-(2, 'Second Item', 'This is the second item to be created.', 2, 1, '2019-09-26 10:15:28');
+(2, 'Second Item', 'This is the second item to be created.', 2, 1, '2019-09-26 10:15:28'),
+(3, 'Item for Second Real Class', 'item description for second real class', 6, 1, '2019-09-27 16:41:12'),
+(4, 'Sunday Item', 'This item was created on Sunday                                                    \r\n                                                ', 2, 1, '2019-09-29 11:44:21'),
+(5, 'Exciting Item', '   An item for this special class.                                                 \r\n                                                ', 1, 1, '2019-09-29 13:40:56');
 
 -- --------------------------------------------------------
 
@@ -70,10 +85,18 @@ INSERT INTO `items` (`iid`, `name`, `description`, `classId`, `teacherId`, `date
 CREATE TABLE `students` (
   `sid` int(11) NOT NULL,
   `name` text NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `classes` varchar(255) NOT NULL
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `classes` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`sid`, `name`, `email`, `password`, `classes`) VALUES
+(1, 'Student One', 'student@school.com', 'password', NULL),
+(2, 'Student Two', 'student2@school.com', 'password', NULL);
 
 -- --------------------------------------------------------
 
@@ -87,6 +110,17 @@ CREATE TABLE `student_classes` (
   `cid` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `student_classes`
+--
+
+INSERT INTO `student_classes` (`scid`, `sid`, `cid`) VALUES
+(1, '1', '1'),
+(4, '1', '4'),
+(3, '1', '2'),
+(5, '2', '2'),
+(6, '2', '8');
+
 -- --------------------------------------------------------
 
 --
@@ -99,6 +133,14 @@ CREATE TABLE `teachers` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `teachers`
+--
+
+INSERT INTO `teachers` (`tid`, `name`, `email`, `password`) VALUES
+(1, 'Teacher One', 'teacher1@hotmail.com', 'password'),
+(3, 'Teacher Two', 'teacher2@email.com', 'password');
 
 --
 -- Indexes for dumped tables
@@ -143,28 +185,32 @@ ALTER TABLE `teachers`
 -- AUTO_INCREMENT for table `classes`
 --
 ALTER TABLE `classes`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `iid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `iid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `student_classes`
 --
 ALTER TABLE `student_classes`
-  MODIFY `scid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `scid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `teachers`
 --
 ALTER TABLE `teachers`
-  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
