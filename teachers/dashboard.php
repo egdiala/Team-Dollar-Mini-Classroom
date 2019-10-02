@@ -1,49 +1,87 @@
 <?php
-session_start();
-require "logincheck.php";
+    require "page-parts/session.php";
+    $page_title = "Dashboard";
+    require "page-parts/html_header.php";
 ?>
-<!DOCTYPE html>
-<html lang="en-US">
-<head>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-	<title>Mini Class - Teacher Login</title>
-</head>
 <body>
-	<h2>Welcome Mini Class Teacher</h2>
 
-	<?php
-		require "api/get-classes.php"
-	?>
+<div class="wrapper">
+    <?php
+        require "page-parts/sidebar.php";
+    ?>
 
-	<div>
-		<h1>Hi <span ng-bind="name"></span></h1>
+    <div class="main-panel">
+        <?php
+            require "page-parts/navbar.php";
+        ?>
+        <div class="content">
+            <div class="container-fluid">
 
-		<table border="1">
-		  <tr>
-		  	<td>S/N</td>
-		  	<td>Class Id</td>
-		  	<td>Class Name</td>
-		  	<td>Action</td>
-		  </tr>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Your Classes</h4>
+                                <p class="category">The following is the list of classes you have created.</p>
+                            </div>
+                            <div class="content table-responsive table-full-width">
+                                <?php
+                                    require "api/get-classes.php"
+                                ?>
 
-		<?php
-			for($i = 0; $i < count($feedback); $i++) {
-				$row = $feedback[$i];
-		?>
-			  <tr>
-			    <td><?php echo ($i+1); ?></td>
-			    <td><?php echo $row["cid"]; ?></td>
-			    <td><?php echo $row["name"] ?></td>
-			    <td><a href="class-view.php?cid=<?php echo $row["cid"]; ?>">View</a></td>
-			  </tr>
-		<?php
-			}
-		?>
-		</table>
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <th>S/N</th>
+                                        <th>Class Code</th>
+                                        <th>Name</th>
+                                        <th>Students</th>
+                                        <th>Action</th>
+                                    </thead>
+                                    <tbody>
 
-		<h2><a href="create-class-view.php">Create Class</a></h2>
-	</div>
+                                        <?php
+                                            for($i = 0; $i < count($feedback); $i++) {
+                                                $row = $feedback[$i];
+                                        ?>
+                                              <tr>
+                                                <td><?php echo ($i+1); ?></td>
+                                                <td>CL0<?php echo $row["cid"]; ?></td>
+                                                <td><?php echo $row["name"] ?></td>
+                                                <td><?php echo $row["members"] ?></td>
+                                                <td><a href="class-view.php?cid=<?php echo $row["cid"]; ?>">View</a></td>
+                                              </tr>
+                                        <?php
+                                            }
+                                        ?>
+                                    </tbody>
+                                </table>
+
+                                <a href="create-class-view.php" class="btn btn-info btn-fill pull-right">Create Class</a>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <?php
+            require "page-parts/html_footer.php";
+        ?>
+
+    </div>
+</div>
 
 
 </body>
+<?php 
+    require "page-parts/scripts.php";
+?>
 </html>

@@ -18,7 +18,10 @@ if($tid){
   $where = " WHERE `teacherId` = $tid";
 }
 
-$sql = "SELECT * FROM `classes` $where";
+//$sql = "SELECT * FROM `classes` $where";
+$sql = "SELECT `classes`.*,
+(SELECT count(*) from `student_classes` where `student_classes`.`cid` = `classes`.`cid`) as members
+FROM `classes` $where ";
 
 $result = $conn->query($sql);
 $feedback = array();

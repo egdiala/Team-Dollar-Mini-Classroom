@@ -5,5 +5,5 @@ session_start();
 	$_SESSION["name"] = "Teacher One";
 	$_SESSION["email"] = "teacher1@hotmail.com";
 
-header("location:dashboard.php");
+header("location:../dashboard.php");
 ?>

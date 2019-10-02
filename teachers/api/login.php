@@ -9,8 +9,22 @@ function giveFeedback( $status , $message ){
     echo json_encode($arr);  
 }
 
+
+/*
+session_start();
+
+	$_SESSION["id"] = 1;
+	$_SESSION["name"] = "Teacher One";
+	$_SESSION["email"] = "teacher1@hotmail.com";
+
+header("location:../dashboard.php");
+exit();
+*/
+
+/*
 $json = file_get_contents('php://input');
 $data = json_decode($json);
+
 
 if(!json_last_error() == JSON_ERROR_NONE){
     giveFeedback( "FAILURE" , "Bad json sent." );
@@ -21,21 +35,45 @@ if(!$data->email || !$data->password){
 	giveFeedback( "FAILURE" , "You need to provide email and password." );
 	exit;
 }
+*/
 
-//require "../db/db.php";
+if(isset($_POST["email"]) && isset($_POST["password"])){
 
 
-//get user from database and compare
-if($data->email == "teacher1@hotmail.com" && $data->password == "password"){
-	giveFeedback( 'SUCCESS' , "");
+	require "../db/db.php";
 
-	$_SESSION["id"] = 1;
-	$_SESSION["name"] = "Teacher One";
-	$_SESSION["email"] = "teacher1@hotmail.com";
-	
+	$email = ($_POST["email"] ? mysqli_real_escape_string($conn, $_POST["email"]) : "");
+	$password = ($_POST["password"] ? mysqli_real_escape_string($conn, $_POST["password"]) : "");
+
+
+	$sql = "SELECT * FROM `teachers` where `email` = '$email' and `password` = '$password' LIMIT 1";
+
+	$result = $conn->query($sql);
+
+	if($result === FALSE){
+	  echo $conn->error;
+	} else if ($result->num_rows > 0) {
+
+
+	  while($row = $result->fetch_assoc()) {
+	      $class = $row;
+
+
+		$_SESSION["id"] = $row["tid"];
+		$_SESSION["name"] = $row["name"];
+		$_SESSION["email"] = $row["email"];
+	  }
+
+	  $conn->close();
+	  header("location:../dashboard.php");
+
+	} else {
+	  $conn->close();
+	  header("location:../index.php?m=Wrong username or password.");
+	}
+
 } else {
-	giveFeedback( 'FAILED' , "Wrong username or password.");
+	header("location:../index.php?m=Fill in email and password.");
 }
-
 
 ?>
